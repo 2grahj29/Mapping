@@ -5,6 +5,30 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/latitudeEditText"
+        android:text=""
+        android:hint="Latitude" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/longitudeEditText"
+        android:text=""
+        android:enabled="false"
+        android:hint="Longitude" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitbutton"
+        android:layout_gravity="right" />
+
     <org.osmdroid.views.MapView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
