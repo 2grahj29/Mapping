@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/longitudeEditText"
         android:text=""
-        android:enabled="false"
         android:hint="Longitude" />
 
     <Button
