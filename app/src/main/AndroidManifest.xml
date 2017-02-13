@@ -25,6 +25,9 @@
 
         <activity android:name=".MapChooseActivity" android:label="@string/choosemap">
         </activity>
+
+        <activity android:name=".MapSetLocation" android:label="@string/setlocationmenu">
+        </activity>
     </application>
 
 </manifest>

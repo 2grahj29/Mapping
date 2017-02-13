@@ -20,7 +20,6 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.util.GeoPoint;
 
 public class HelloMap extends Activity
-        implements View.OnClickListener
 {
     MapView mv;
 
@@ -40,24 +39,8 @@ public class HelloMap extends Activity
         mv.getController().setZoom(14);
         mv.getController().setCenter(new GeoPoint(40.1,22.5));
 
-        //Submit button starts onClick event
-        Button submitButton = (Button) findViewById(R.id.submitbutton);
-        submitButton.setOnClickListener(this);
+
     }
-
-    @Override
-    public void onClick(View view) {
-        //Retrieve the latitude
-        EditText latitudeEditText = (EditText) findViewById(R.id.latitudeEditText);
-        double latitude = Double.parseDouble(latitudeEditText.getText().toString());
-
-        //Retrieve the longitude
-        EditText longitudeEditText = (EditText) findViewById(R.id.longitudeEditText);
-        double longitude = Double.parseDouble(latitudeEditText.getText().toString());
-
-        mv.getController().setCenter(new GeoPoint(latitude,longitude));
-    }
-
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -66,17 +49,20 @@ public class HelloMap extends Activity
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if(item.getItemId() == R.id.choosemap)
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.choosemap) {
             // react to the menu item being selected...
-            Intent intent = new Intent(this,MapChooseActivity.class);
-            startActivityForResult(intent,0);
+            Intent intent = new Intent(this, MapChooseActivity.class);
+            startActivityForResult(intent, 0);
+            return true;
+        } else if (item.getItemId() == R.id.setlocationmenu) {
+            Intent intent = new Intent(this, MapSetLocation.class);
+            startActivityForResult(intent, 1);
             return true;
         }
         return false;
     }
+
     protected void onActivityResult(int requestCode,int resultCode,Intent intent)
     {
 
