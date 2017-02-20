@@ -4,4 +4,5 @@
     <string name="setlocationmenu">Set Location</string>
     <string name="regularview">Regular View</string>
     <string name="cyclemapview">Cycle-Map View</string>
+    <string name="submitbutton">Submit</string>
 </resources>

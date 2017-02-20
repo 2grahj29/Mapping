@@ -63,24 +63,25 @@ public class HelloMap extends Activity
         return false;
     }
 
-    protected void onActivityResult(int requestCode,int resultCode,Intent intent)
-    {
+    protected void onActivityResult(int requestCode,int resultCode,Intent intent) {
 
-        if(requestCode==0)
-        {
+        if (requestCode == 0) {
 
-            if (resultCode==RESULT_OK)
-            {
-                Bundle extras=intent.getExtras();
+            if (resultCode == RESULT_OK) {
+                Bundle extras = intent.getExtras();
                 boolean cyclemap = extras.getBoolean("com.example.cyclemap");
-                if(cyclemap==true)
-                {
+                if (cyclemap == true) {
                     mv.setTileSource(TileSourceFactory.CYCLEMAP);
-                }
-                else
-                {
+                } else {
                     mv.getTileProvider().setTileSource(TileSourceFactory.MAPNIK);
                 }
+            }
+        }
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                Bundle
+                ("com.example.lattiude");
+                ("com.example.longitude");
             }
         }
     }
