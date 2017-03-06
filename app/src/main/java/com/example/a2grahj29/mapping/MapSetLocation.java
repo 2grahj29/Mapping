@@ -19,6 +19,9 @@ public class MapSetLocation extends Activity implements OnClickListener {
     }
 
     public void onClick(View view) {
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        boolean button = false;
 
         //Retrieve the latitude
         EditText latitudeEditText = (EditText) findViewById(R.id.latitudeEditText);
@@ -28,10 +31,13 @@ public class MapSetLocation extends Activity implements OnClickListener {
         EditText longitudeEditText = (EditText) findViewById(R.id.longitudeEditText);
         double longitude = Double.parseDouble(latitudeEditText.getText().toString());
 
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putDouble("com.example.lattiude",latitude);
+
+
+        bundle.putDouble("com.example.latitude",latitude);
         bundle.putDouble("com.example.longitude",longitude);
+        bundle.putBoolean("com.example.button", button);
+        intent.putExtras(bundle);
+
         setResult(RESULT_OK,intent);
         finish();
     }

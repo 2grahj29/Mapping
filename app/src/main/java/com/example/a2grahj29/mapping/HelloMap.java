@@ -79,9 +79,11 @@ public class HelloMap extends Activity
         }
         if (requestCode == 1){
             if (resultCode == RESULT_OK){
-                Bundle
-                ("com.example.lattiude");
-                ("com.example.longitude");
+                Bundle extras1=intent.getExtras();
+                double latitude = extras1.getDouble("com.example.latitude");
+                double longitude = extras1.getDouble("com.example.longitude");
+
+                mv.getController().setCenter(new GeoPoint(latitude, longitude));
             }
         }
     }
