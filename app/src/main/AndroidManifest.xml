@@ -28,6 +28,9 @@
 
         <activity android:name=".MapSetLocation" android:label="@string/setlocationmenu">
         </activity>
+
+        <activity android:name=".MyPrefsActivity" android:label="@string/prefactivity">
+        </activity>
     </application>
 
 </manifest>

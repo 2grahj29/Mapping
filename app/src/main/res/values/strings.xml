@@ -2,6 +2,7 @@
     <string name="app_name">Mapping</string>
     <string name="choosemap">Map Styles</string>
     <string name="setlocationmenu">Set Location</string>
+    <string name="prefactivity">Preferences</string>
     <string name="regularview">Regular View</string>
     <string name="cyclemapview">Cycle-Map View</string>
     <string name="submitbutton">Submit</string>

@@ -2,8 +2,10 @@ package com.example.a2grahj29.mapping;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.renderscript.Double2;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -59,6 +61,10 @@ public class HelloMap extends Activity
             Intent intent = new Intent(this, MapSetLocation.class);
             startActivityForResult(intent, 1);
             return true;
+        } else if (item.getItemId() == R.id.prefactivity) {
+            Intent intent = new Intent(this, MyPrefsActivity.class);
+            startActivityForResult(intent, 2);
+            return true;
         }
         return false;
     }
@@ -70,7 +76,7 @@ public class HelloMap extends Activity
             if (resultCode == RESULT_OK) {
                 Bundle extras = intent.getExtras();
                 boolean cyclemap = extras.getBoolean("com.example.cyclemap");
-                if (cyclemap == true) {
+                if (cyclemap) {
                     mv.setTileSource(TileSourceFactory.CYCLEMAP);
                 } else {
                     mv.getTileProvider().setTileSource(TileSourceFactory.MAPNIK);
@@ -86,6 +92,18 @@ public class HelloMap extends Activity
                 mv.getController().setCenter(new GeoPoint(latitude, longitude));
             }
         }
+    }
+    public void onStart()
+    {
+        super.onStart();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        double lat = Double.parseDouble (prefs.getString("lat", "50.9"));
+        double lon = Double.parseDouble (prefs.getString("lon", "-1.4"));
+        int zoom = Integer.parseInt(prefs.getString("zoom", "14"));
+
+        mv.getController().setZoom(zoom);
+        mv.getController().setCenter(new GeoPoint(lat, lon));
+
     }
 }
 
