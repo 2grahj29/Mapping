@@ -14,7 +14,7 @@ public class MapSetLocation extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.msl);
 
-        Button regular = (Button) findViewById(R.id.btnRegular);
+        Button regular = (Button) findViewById(R.id.submitbutton);
         regular.setOnClickListener(this);
     }
 
@@ -26,15 +26,15 @@ public class MapSetLocation extends Activity implements OnClickListener {
         //Retrieve the latitude
         EditText latitudeEditText = (EditText) findViewById(R.id.latitudeEditText);
         double latitude = Double.parseDouble(latitudeEditText.getText().toString());
+        bundle.putDouble("com.example.latitude",latitude);
 
         //Retrieve the longitude
         EditText longitudeEditText = (EditText) findViewById(R.id.longitudeEditText);
-        double longitude = Double.parseDouble(latitudeEditText.getText().toString());
-
-
-
-        bundle.putDouble("com.example.latitude",latitude);
+        double longitude = Double.parseDouble(longitudeEditText.getText().toString());
         bundle.putDouble("com.example.longitude",longitude);
+
+
+
         bundle.putBoolean("com.example.button", button);
         intent.putExtras(bundle);
 
