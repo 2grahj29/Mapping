@@ -81,7 +81,7 @@ public class HelloMap extends Activity
             String line = "";
             while((line = reader.readLine()) != null){
                 String[] components = line.split(",");
-                if(components.length==4);
+                if(components.length==5)
                 {
                     OverlayItem currentPlace = new OverlayItem(components[0], components[2], new GeoPoint(Double.parseDouble(components[4]), Double.parseDouble(components[3])));
                     items.addItem(currentPlace);
