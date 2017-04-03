@@ -1,9 +1,11 @@
 package com.example.a2grahj29.mapping;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.renderscript.Double2;
 import android.view.Menu;
@@ -15,15 +17,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Toast;
 
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloMap extends Activity
 {
     MapView mv;
+    ItemizedIconOverlay<OverlayItem> items;
+    ItemizedIconOverlay.OnItemGestureListener<OverlayItem> markerGestureListener;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -41,7 +54,46 @@ public class HelloMap extends Activity
         mv.getController().setZoom(14);
         mv.getController().setCenter(new GeoPoint(40.1,22.5));
 
+        markerGestureListener = new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>()
+        {
+            public boolean onItemLongPress(int i, OverlayItem item)
+            {
+                Toast.makeText(HelloMap.this, item.getSnippet(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
 
+            public boolean onItemSingleTapUp(int i, OverlayItem item)
+            {
+                Toast.makeText(HelloMap.this, item.getSnippet(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        };
+
+        items = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), null);
+        OverlayItem epsom_station = new OverlayItem("Epsom Station", "A train station.", new GeoPoint(51.3344, -0.2691));
+        OverlayItem the_assembly_rooms = new OverlayItem("The Assembly Rooms", "Pub", new GeoPoint(51.3328, -0.2698));
+        items.addItem(epsom_station);
+        items.addItem(the_assembly_rooms);
+        mv.getOverlays().add(items);
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(Environment.getExternalStorageDirectory().getAbsolutePath() + "/poi.txt"));
+            String line = "";
+            while((line = reader.readLine()) != null){
+                String[] components = line.split(",");
+                if(components.length==4);
+                {
+                    OverlayItem currentPlace = new OverlayItem(components[0], components[2], new GeoPoint(Double.parseDouble(components[4]), Double.parseDouble(components[3])));
+                    items.addItem(currentPlace);
+                }
+            }
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            new AlertDialog.Builder(this).setMessage("ERROR: " + e).show();
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
