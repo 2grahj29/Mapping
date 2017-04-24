@@ -69,7 +69,7 @@ public class HelloMap extends Activity
             }
         };
 
-        items = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), null);
+        items = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), markerGestureListener);
         OverlayItem epsom_station = new OverlayItem("Epsom Station", "A train station.", new GeoPoint(51.3344, -0.2691));
         OverlayItem the_assembly_rooms = new OverlayItem("The Assembly Rooms", "Pub", new GeoPoint(51.3328, -0.2698));
         items.addItem(epsom_station);
